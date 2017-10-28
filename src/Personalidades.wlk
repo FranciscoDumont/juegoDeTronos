@@ -1,11 +1,23 @@
 import Animal.*
-import Casa.*
 import Conspiracion.*
 import Personaje.*
+import Casa.*
 
 class Sutil {
+	var casas = #{casaLannister,casaStark,casaGuardiaDeLaNoche}
+	
+	method casaMasPobre(){
+		return casas.min({casa => casa.patrimonio()})
+	}
+	
+	method solteroPobre(){
+		return self.casaMasPobre().find({persona => persona.noTienePareja() && persona.estaVivo() })
+	}
+	
 	method accion(complotado,unObjetivo){
-		//no se
+		unObjetivo.casarseCon( self.solteroPobre())
+		//si no se puede casar va a fallar en "casarseCon"
+		//si no encuentra con quien casarse falla en el find de solteroPobre()	
 	}
 }
 

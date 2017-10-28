@@ -8,11 +8,6 @@ class Casa {
 	var ciudadProveniente
 	var miembros = #{}
 
-	constructor (unPatrimonio,unaCiudadProveniente,unosMiembros){
-		patrimonio = unPatrimonio
-		ciudadProveniente = unaCiudadProveniente
-		miembros = unosMiembros
-	}
 
 	method puedenCasarse(unPersonaje,otroPersonaje)
 
@@ -31,21 +26,24 @@ class Casa {
 	method miembros() {return miembros}
 }
 
-class CasaLannister inherits Casa {
+//Estaria mal que las casas sean clases ? 
+
+object casaLannister inherits Casa {
 	override method puedenCasarse(unPersonaje,otroPersonaje) {
 		return unPersonaje.noTienePareja()
 	}
 }
 
 
-class CasaStark inherits Casa {
+object casaStark inherits Casa {
 	override method puedenCasarse(unPersonaje,otroPersonaje) {
 		return unPersonaje.casa() == otroPersonaje.casa()
 	}
 }
 
-class CasaGuardiaDeLaNoche inherits Casa {
+object casaGuardiaDeLaNoche inherits Casa {
 	override method puedenCasarse(unPersonaje,otroPersonaje) {
 		return false
 	}
 }
+
