@@ -15,7 +15,7 @@ class Lobo inherits Animal{
 		return false
 	}
 }
-class LoboHuargo inherits Lobo{
+class LoboHuargo inherits Lobo{  //El Huargo es un tipo de Lobo, los lobos tienen una raza. La clase estaría demás.
 	override method esPeligroso(){
 		return true
 	}
@@ -27,4 +27,6 @@ class Dragon inherits Animal{
 	}
 }
 
-// Estoy repitiendo logica cuando creo estos 3 esPeligroso()s ?
+// Estoy repitiendo logica cuando creo estos 3 esPeligroso()s ? 
+
+//De la forma que está hecho...si, pero tendrías que cambiar a los lobos
