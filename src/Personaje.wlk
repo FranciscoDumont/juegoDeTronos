@@ -18,18 +18,18 @@ class Personaje {
 		return conyuges.isEmpty()
 	}
 
-	method puedeCasarseCon(otroPersonaje){ // se pueden casar si ambos pueden
-		return casa.puedenCasarse(self,otroPersonaje) && otroPersonaje.casa().puedenCasarse(otroPersonaje,self) //No rompas encapsulamiento con el otro personaje! Si él mismo te puede decir si se puede casar o no!
-	}                                                                                                               //De todos modos, no tenés que preguntar si el otro se puede casar con vos, el método es puede Casarse, no pueden*
-
-	method casarseCon(otroPersonaje) { //Acá preguntás si el otro puede casarse con vos, y hacés que se casen 
-		if (self.puedeCasarseCon(otroPersonaje)) {
+	method puedeCasarseCon(otroPersonaje){
+		return casa.puedenCasarse(self,otroPersonaje) 
+	}
+	
+	method casarseCon(otroPersonaje) {
+		if (self.puedeCasarseCon(otroPersonaje) && otroPersonaje.puedeCasarseCon(self)) {
 			conyuges.add(otroPersonaje)
-		}else throw new Exception("No se pueden casar") //Bien con la excepción
+		}else throw new Exception("No se pueden casar")
 	}
 
 	method patrimonio() {
-		return casa.patrimonio() / casa.cantidadDeMiembros() //esto es responsabilidad del personaje no ? //Esto es responsabilidad de la casa, estás rompiendo encapsulamiento.
+		return casa.patrimonioPorMiembro()
 	}
 
 	method estaSolo() {
@@ -43,9 +43,13 @@ class Personaje {
 	method patrimonioAliados() {
 		return self.aliados().sum({aliado => aliado.patrimonio()}) 
 	}
+	
+	method esDeCasaRica(){
+		return casa.esRica()
+	}
 
 	method conyugesDeCasaRica() {
-		return conyuges.all({conyuge => conyuge.casa().esRica()}) //Estás rompiendo encapsulamiento, tendría que ser conyuge.esDeCasaRica()
+		return conyuges.all({conyuge => conyuge.esDeCasaRica() })
 	}
 
 	method esAliadoDeAlguienPeligroso() {
